@@ -3,7 +3,6 @@ export default function data(state = {}, action = {}) {
 
     switch (action.type) {
 
-
         case 'SET_USER':
 
             return {
@@ -12,10 +11,12 @@ export default function data(state = {}, action = {}) {
 
             };
 
-        case 'GET_DATA':
+
+        case 'GO_TO':
             return {
                 ...state,
-                someData: action.payload
+                path: action.path
+
             };
 
 

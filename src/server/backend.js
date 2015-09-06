@@ -1,11 +1,7 @@
 
 var users = {
-    redux:'tinyrouter'
+    redux:'iscool'
 };
-
-
-var data = 230;
-
 
 export default function backend (app){
 
@@ -20,14 +16,6 @@ export default function backend (app){
             res.status(401).send({status:'failure,does not match'});
         }
     });
-
-    app.post('/api/data',function(req,res){
-
-        setTimeout(function(){
-        res.json({data:'some data from the server'});
-        },2000) ;
-    });
-
 
 
     app.post('/api/logout',function(req,res){

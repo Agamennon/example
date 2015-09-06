@@ -1,23 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import {Home} from './Home.jsx';
-import {utils} from 'redux-tiny-router';
-import {Other} from './Other.jsx';
-import {Special} from './Special.jsx';
-import {Secure} from './Secure.jsx';
-import {Login} from './Login.jsx';
-import {NotFound} from './NotFound.jsx';
-
-
-utils.setRoutes([
-    '/',
-    '/login',
-    '/other',
-    '/other/:id/*',
-    '/special:id',
-    '/secure/*'
-]);
-
+import { connect } from 'react-redux';
+import {Secure} from './Secure.jsx'
+import {Home} from './Home.jsx'
+import {Login} from './Login.jsx'
 
 if (__CLIENT__) {
     require('./layout.scss');
@@ -25,29 +10,19 @@ if (__CLIENT__) {
 
 @connect((state ) => {
     return {
-        src:state.router.src
+        data:state.data
     }
 })
-export class App extends React.Component {
+export default class App extends React.Component {
     render() {
-
-        const src = this.props.src;
-
-        switch (src) { //first path
-            case '/':
-                return <Home/>;
-            case '/login':
-                return <Login/>;
-            case '/other':
-                return <Other/>;
-            case '/other/:id/*':
-                return <Other/>;
-            case '/secure/*':
-                return <Secure/>;
-            default:
-                return <NotFound/>;
-        }
-
-
+        const path = this.props.data.path;
+        if (path === '/secure')
+            return <Secure/>;
+        if (path === '/login')
+            return <Login/>;
+        return <Home/>
     }
 }
+
+
+
